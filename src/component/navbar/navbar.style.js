@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 // ``
 
@@ -20,6 +21,7 @@ export const NavbarLogo = styled.img`
   width: 226px;
 `;
 
-export const NavbarItemLink = styled.a`
-
+export const NavbarItemLink = styled.div`
+  margin: 10px 10px 30px 30px;
 `;
+
