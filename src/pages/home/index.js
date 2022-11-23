@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
+import Anime, { anime } from "react-anime";
 import {
   HomeContainer,
   WhoTitle,
@@ -14,13 +15,86 @@ import {
   HeroText,
 } from "./home.style";
 import GoalCard from "../../component/goalCard";
+import FontSvg from "../../component/fontsvg";
 
 const Home = () => {
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const whoTitle = useRef(null);
+  const visionGoal = useRef(null);
+
+  const element = document.querySelector(".header1");
+
+  const visionAnimation = anime({
+    targets: element,
+    easing: "easeOutElastic",
+    loop: false,
+    duration: 1000,
+    delay: (el, index) => index * 240,
+    translateX: 1400,
+    opacity: [0, 1],
+    scale: [0.75, 1],
+  });
+
+  anime({
+    targets: ".heroText path",
+    strokeDashoffset: [anime.setDashoffset, 0],
+    easing: "easeInOutSine",
+    duration: 1500,
+    delay: (el, i) => {
+      return i * 250;
+    },
+    direction: "alternate",
+    loop: true,
+  });
+
+  const handleScroll = () => {
+    const position = window.scrollY;
+    const offset = whoTitle.current.offsetTop;
+    const scrollPercent = position - offset;
+    visionAnimation.seek((scrollPercent / 100) * visionAnimation.duration);
+    setScrollPosition(position);
+  };
+
+  // useEffect(() => {
+  //   window.addEventListener("scroll", handleScroll, { passive: true });
+
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
+
+  // console.log(scrollPosition);
+  // const whoTitle = document.querySelector(".whoTitle");
+  // const rect = whoTitle.current.getBoundingClientRect();
+
+  window.onscroll = () => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  };
+
   return (
     <HomeContainer>
-      <WhoTitle>WHO WE ARE</WhoTitle>
+      {/* <Anime
+        easing="easeOutElastic"
+        loop={false}
+        duration={1000}
+        delay={(el, index) => index * 240}
+        translateX={[0, 1400]}
+        scale={[0.75, 1]}
+      > */}
+      {/* <WhoTitle ref={whoTitle}>WHO WE ARE</WhoTitle> */}
+      {/* </Anime> */}
+      <Anime>
+        <WhoTitle className="header1" ref={whoTitle}>
+          WHO WE ARE
+        </WhoTitle>
+      </Anime>
       <WhoSection>
         <WhoImage src="child_slide.jpg" alt="child_slide" />
+
         <WhoParagraphContainer>
           <WhoParagraph>
             <span>
@@ -68,24 +142,49 @@ const Home = () => {
         </WhoParagraphContainer>
       </WhoSection>
       <GoalsSection>
-        <GoalCard title="VISION">
-          To be a family united in building
-          <br />
-          universal brotherhood.
-        </GoalCard>
-        <GoalCard title="MISSION">
-          To build relationships based on mutual love where
-          <br />
-          "No one is so poor that he/she cannot give, and no one is so rich
-          <br />
-          that he/she cannot receive."
-        </GoalCard>
+        {scrollPosition >= 276 && (
+          <Anime
+            easing="easeOutElastic"
+            loop={false}
+            duration={1500}
+            delay={(el, index) => index * 240}
+            translateX={[-1000, 0]}
+            scale={[0.1, 1]}
+            autoplay={true}
+          >
+            <GoalCard title="VISION" ref={visionGoal}>
+              To be a family united in building
+              <br />
+              universal brotherhood.
+            </GoalCard>
+          </Anime>
+        )}
+        {scrollPosition >= 690 && (
+          <Anime
+            easing="easeOutElastic"
+            loop={false}
+            duration={1500}
+            delay={(el, index) => index * 240}
+            translateX={[1000, 0]}
+            scale={[0.1, 1]}
+            autoplay={true}
+          >
+            <GoalCard title="MISSION">
+              To build relationships based on mutual love where
+              <br />
+              "No one is so poor that he/she cannot give, and no one is so rich
+              <br />
+              that he/she cannot receive."
+            </GoalCard>
+          </Anime>
+        )}
       </GoalsSection>
       <HeroContainer>
         <HeroImage src="child_presentation.jpg" alt="child_presentation" />
         <HeroTextContainer>
-          <HeroText>"Freely we receive, </HeroText>
-          <HeroText>freely we give" </HeroText>
+          {/* <HeroText>"Freely we receive, </HeroText>
+          <HeroText>freely we give" </HeroText> */}
+          <FontSvg />
         </HeroTextContainer>
       </HeroContainer>
       <ProgramTitle>OUR PROGRAMS</ProgramTitle>

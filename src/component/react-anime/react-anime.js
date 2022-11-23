@@ -9,7 +9,8 @@ export const ReactAnime = (props) => {
   anime({
     targets: document.querySelector(".red"),
     translateX: [0, 270, 0, -270, 0],
-  }); 
+  });
+
   return (
     <>
       <Anime

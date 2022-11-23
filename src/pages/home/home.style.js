@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const HomeContainer = styled.div`
   padding: 24px;
   display: flex;
-  // margin: 0px 72px 0px 72px;
   flex-direction: column;
 `;
 
@@ -13,8 +12,8 @@ export const WhoTitle = styled.h1`
   font-size: 48px;
   text-shadow: 1px 1px 2px black;
   margin-bottom: 8px;
-  margin-left: auto;
   margin-right: 72px;
+  align-self: flex-end;
 `;
 
 export const WhoSection = styled.div`
@@ -44,7 +43,7 @@ export const WhoParagraph = styled.p`
 `;
 
 export const GoalsSection = styled.div`
-margin-top: 72px;
+  margin-top: 72px;
   align-self: center;
   display: flex;
   gap: 120px;

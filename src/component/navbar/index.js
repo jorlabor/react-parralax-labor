@@ -57,7 +57,7 @@ const Navbar = () => {
                 fontSize: "20px",
               })}
             >
-              Contact
+              Case Study
             </NavLink>
           </NavbarItemLink>
         </NavbarItemContainer>
