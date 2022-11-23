@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { ReactAnime } from "./component/react-anime/react-anime";
 import Navbar from "./component/navbar";

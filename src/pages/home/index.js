@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import Anime, { anime } from "react-anime";
 import {
   HomeContainer,
@@ -12,7 +12,6 @@ import {
   HeroContainer,
   HeroTextContainer,
   HeroImage,
-  HeroText,
 } from "./home.style";
 import GoalCard from "../../component/goalCard";
 import FontSvg from "../../component/fontsvg";

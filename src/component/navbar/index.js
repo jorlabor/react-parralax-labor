@@ -4,7 +4,6 @@ import {
   NavbarLogo,
   NavbarContainer,
   NavbarItemLink,
-  NavbarLink,
 } from "./navbar.style";
 import Logo from "../../bp_logo.jpg";
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
